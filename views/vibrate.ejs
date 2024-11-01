@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= emoji %>Vibratoi.re</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <meta
+      property="og:title"
+      content="Ressens les Ondes : <%= emoji %> Vibratoire !"
+    />
+    <meta
+      property="og:description"
+      content="Découvrez l'emoji <%= emoji %> en pleine vibration cosmique. Un moment de connexion énergétique ultime, garanti sans effet placebo !"
+    />
+    <meta
+      property="og:image"
+      content="https://vibratoi.re/images/emoji_<%= encodeURIComponent(emoji) %>.png"
+    />
+    <meta property="og:url" content="https://vibratoi.re/<%= emoji %>" />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="emoji" id="emoji"><%= emoji %></div>
+      <button id="shareButton">Partager</button>
+    </div>
+    <script src="/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,121 @@
+/* Styles de base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #f5f5f5;
+  transition: background-color 0.3s, color 0.3s;
+  color: #333;
+}
+
+/* Mode sombre */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #000000;
+    /* Fond noir pour le mode sombre */
+    color: #f5f5f5;
+    /* Texte en couleur claire pour contraste */
+  }
+
+  .container {
+    background-color: #000000;
+    /* Assure que le conteneur aussi est en noir */
+  }
+
+  .emoji {
+    color: #f5f5f5;
+    /* Emoji en couleur claire pour qu'il soit visible sur fond noir */
+  }
+
+  button {
+    background-color: #333;
+    /* Bouton gris foncé pour le mode sombre */
+    color: #f5f5f5;
+    /* Texte du bouton en clair */
+  }
+
+  button:hover {
+    background-color: #555;
+    /* Couleur plus claire au survol pour contraste */
+  }
+}
+
+/* Conteneur principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+
+.emoji-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  font-size: 2rem;
+}
+
+.emoji-grid a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 15px;
+}
+
+/* Emoji plein écran et centré */
+.emoji {
+  font-size: 40vh;
+  animation: vibrate 0.1s infinite;
+  line-height: 1;
+}
+
+/* Position du bouton en bas */
+button {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  background-color: #333;
+  color: #fff;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+/* Animation de vibration pour l'emoji */
+@keyframes vibrate {
+  0% {
+    transform: translate(1px, 1px);
+  }
+
+  50% {
+    transform: translate(-1px, -1px);
+  }
+
+  100% {
+    transform: translate(1px, 1px);
+  }
+}
