@@ -30,7 +30,7 @@ app.get("/:emoji", async (req, res) => {
 
   // Ignorer les requêtes non emoji comme favicon.ico
   if (!isEmoji(emoji)) {
-    return res.status(404).send("Not found");
+    return res.status(404).render("vibrate", { emoji: "🍌" });
   }
 
   // Afficher la page avec Open Graph
