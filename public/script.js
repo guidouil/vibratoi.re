@@ -21,7 +21,11 @@ document.getElementById("shareButton").addEventListener("click", async () => {
   }
 });
 
-// retour page précédente
+// retour page précédente si la page precédente existe sinon aller à l'accueil
 document.getElementById("emoji").addEventListener("click", () => {
-  window.history.back();
+  if (window.history.length > 1) {
+    window.history.back();
+  } else {
+    window.location.assign("/");
+  }
 });
