@@ -26,38 +26,29 @@
     />
     <meta property="og:url" content="https://vibratoi.re/" />
     <meta property="og:type" content="website" />
+    <!-- emoji picker -->
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"
+    ></script>
   </head>
   <body>
     <div class="container">
       <h1>Choisis un emoji</h1>
-      <div class="emoji-grid">
-        <a href="/🎃">🎃</a>
-        <a href="/👻">👻</a>
-        <a href="/🔮">🔮</a>
-        <a href="/🔥">🔥</a>
+      <emoji-picker locale="fr"></emoji-picker>
 
-        <a href="/💖">💖</a>
-        <a href="/💘">💘</a>
-        <a href="/💝">💝</a>
-        <a href="/💗">💗</a>
-
-        <a href="/🪄">🪄</a>
-        <a href="/👁️">👁️</a>
-        <a href="/👌">👌</a>
-        <a href="/💪">💪</a>
-
-        <a href="/💋">💋</a>
-        <a href="/👅">👅</a>
-        <a href="/🍖">🍖</a>
-        <a href="/💩">💩</a>
-
-        <!-- Ajoute d'autres emojis ici -->
-      </div>
-      <p>Fonctionne avec tous les émojis !</p>
       <br />
       <p><a href="/about">En savoir plus sur l’énergie vibratoi.re</a></p>
 
       <a class="button" target="_blank" href="https://x.com/guidouil">𝙶𝙳🍌</a>
     </div>
   </body>
+  <script>
+    document
+      .querySelector("emoji-picker")
+      .addEventListener("emoji-click", (event) => {
+        // console.log(event.detail);
+        window.location.assign(`/${event.detail.unicode}`);
+      });
+  </script>
 </html>
