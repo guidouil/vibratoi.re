@@ -27,16 +27,25 @@
     <meta property="og:url" content="https://vibratoi.re/" />
     <meta property="og:type" content="website" />
     <!-- emoji picker -->
-    <script
-      type="module"
-      src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"
-    ></script>
+    <script type="module">
+      import "https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js";
+      import fr from "https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/i18n/fr.js";
+
+      // Attendre que le DOM soit chargé
+      document.addEventListener("DOMContentLoaded", () => {
+        const picker = document.querySelector("emoji-picker");
+        picker.i18n = fr;
+        picker.locale = "fr";
+        picker.dataSource =
+          "https://cdn.jsdelivr.net/npm/emojibase-data@5/fr/data.json";
+      });
+    </script>
   </head>
   <body>
     <div class="container">
       <h1>Choisis un emoji</h1>
       <br />
-      <emoji-picker locale="fr"></emoji-picker>
+      <emoji-picker></emoji-picker>
       <br />
       <p>
         <a href="/about"
