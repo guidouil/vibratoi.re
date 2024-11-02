@@ -1,19 +1,3 @@
-// Partage de l'URL
-document.getElementById("shareButton").addEventListener("click", async () => {
-  const shareData = {
-    title: "Vibratoi.re",
-    text: "Explore les vibrations mystérieuses des énergies invisibles. Oseras-tu découvrir ?",
-    url: window.location.href,
-  };
-
-  try {
-    await navigator.share(shareData);
-    alert("Lien partagé avec succès !");
-  } catch (err) {
-    console.error("Erreur lors du partage:", err);
-  }
-});
-
 // retour page précédente si la page precédente existe sinon aller à l'accueil
 document.getElementById("emoji").addEventListener("click", () => {
   // Vibration du téléphone
@@ -22,6 +6,14 @@ document.getElementById("emoji").addEventListener("click", () => {
       420, 100, 420, 100, 420, 100, 420, 100, 420, 100, 420, 100, 420,
     ]);
   }
+  // ajouter le meme emoji dans l'url
+  window.location.assign(
+    `${window.location.pathname}${document.getElementById("emoji").textContent}`
+  );
+});
+
+// retour à la page précédente si la page précédente existe sinon aller à l'accueil
+document.getElementById("backButton").addEventListener("click", () => {
   if (window.history.length > 1) {
     window.history.back();
   } else {
