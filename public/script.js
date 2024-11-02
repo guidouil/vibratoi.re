@@ -1,15 +1,8 @@
-// Vibration du téléphone
-if (navigator.vibrate) {
-  navigator.vibrate([
-    420, 100, 420, 100, 420, 100, 420, 100, 420, 100, 420, 100, 420,
-  ]);
-}
-
 // Partage de l'URL
 document.getElementById("shareButton").addEventListener("click", async () => {
   const shareData = {
-    title: "Vibratoire",
-    text: "Regarde cet emoji qui vibre !",
+    title: "Vibratoi.re",
+    text: "Explore les vibrations mystérieuses des énergies invisibles. Oseras-tu découvrir ?",
     url: window.location.href,
   };
 
@@ -23,6 +16,12 @@ document.getElementById("shareButton").addEventListener("click", async () => {
 
 // retour page précédente si la page precédente existe sinon aller à l'accueil
 document.getElementById("emoji").addEventListener("click", () => {
+  // Vibration du téléphone
+  if (navigator.vibrate) {
+    navigator.vibrate([
+      420, 100, 420, 100, 420, 100, 420, 100, 420, 100, 420, 100, 420,
+    ]);
+  }
   if (window.history.length > 1) {
     window.history.back();
   } else {
