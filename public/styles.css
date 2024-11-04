@@ -208,30 +208,40 @@ button:hover,
   color: inherit;
 }
 
-.prediction-card p {
-  margin: 20px 0;
-  padding: 15px;
+.prediction-card div {
+  margin: 10px 0;
+  padding: 10px;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.05);
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+.prediction-title {
+  font-weight: bold;
+  font-size: 1.4rem;
 }
 
 .prediction-positif {
   border-left: 4px solid #4CAF50;
+  border-right: 4px solid #4CAF50;
 }
 
 .prediction-conseil {
   border-left: 4px solid #2196F3;
+  border-right: 4px solid #2196F3;
 }
 
 .prediction-avertissement {
   border-left: 4px solid #FF9800;
+  border-right: 4px solid #FF9800;
 }
 
 .prediction-conclusion {
   text-align: center;
   font-weight: bold;
-  font-size: 2rem;
+  font-style: italic;
   border-left: 4px solid #9C27B0;
+  border-right: 4px solid #9C27B0;
   margin-top: 30px !important;
 }

@@ -9,21 +9,30 @@
   <body>
     <div class="container">
       <div class="signe-header">
-        <span class="grand-emoji"><%= signeData.emoji %></span>
+        <a class="grand-emoji" href="/<%= signeData.emoji %>"><%= signeData.emoji %></a>
         <h1><%= signeData.nom %></h1>
       </div>
 
       <div id="prediction" class="prediction-card">
-        <p class="prediction-positif">✨ <%= prediction.message.positif %>.</p>
-        <p class="prediction-conseil">🌟 <%= prediction.message.conseil %>.</p>
-        <p class="prediction-avertissement">
-          ⚠️ <%= prediction.message.avertissement %>.
-        </p>
-        <p class="prediction-conclusion">
-          <%= prediction.message.conclusion %>
+        <div class="prediction-positif">
+          <p class="prediction-title">✨ Positif : </p>
+          <p><%= prediction.message.positif %>.</p>
+        </div>
+        <div class="prediction-conseil">
+          <p class="prediction-title">🌟 Conseil :</p>
+          <p><%= prediction.message.conseil %>.</p>
+        </div>
+        <div class="prediction-avertissement">
+          <p class="prediction-title">⚠️ Avertissement :</p>
+          <p><%= prediction.message.avertissement %>.</p>
+        </div>
+        <div class="prediction-conclusion">
+          <p class="prediction-title">🔮 Conclusion</p>
+          <%= prediction.message.conclusion %>.
         </p>
       </div>
 
+      <br />
       <br />
       <a class="button bottom-button retour" href="/horoscope">⬅️</a>
     </div>
