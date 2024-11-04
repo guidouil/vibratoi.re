@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Horoscope Vibratoire</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <a class="grand-emoji" href="/🌟">🌟</a>
+      <h1>Horoscope Vibratoi.re<sup>&reg;</sup></h1>
+
+      <div class="signes-grid">
+        <% Object.entries(signesData).forEach(([key, value]) => { %>
+        <a href="/horoscope/<%= key %>" class="signe-card">
+          <div class="signe-emoji"><%= value.emoji %></div>
+          <div class="signe-nom"><%= value.nom %></div>
+        </a>
+        <% }) %>
+      </div>
+
+      <a class="button" href="/">⬅️</a>
+    </div>
+  </body>
+</html>

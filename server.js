@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const { signesData, genererHoroscope } = require("./public/data/signes.js");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -22,6 +23,24 @@ app.get("/", (req, res) => {
 // Page à propos
 app.get("/about", (req, res) => {
   res.render("about");
+});
+
+// Route pour la page de sélection du signe
+app.get("/horoscope", (req, res) => {
+  res.render("horoscope", { signesData });
+});
+
+// Route pour l'horoscope d'un signe spécifique
+app.get("/horoscope/:signe", (req, res) => {
+  const signe = req.params.signe.toLowerCase();
+  if (!signesData[signe]) {
+    return res.redirect("/horoscope");
+  }
+  res.render("horoscope-signe", {
+    signe,
+    signeData: signesData[signe],
+    prediction: genererHoroscope(signe),
+  });
 });
 
 // Route pour afficher l’emoji vibratoire avec génération d'image si nécessaire

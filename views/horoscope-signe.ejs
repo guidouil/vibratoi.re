@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Horoscope <%= signeData.nom %></title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="signe-header">
+        <span class="grand-emoji"><%= signeData.emoji %></span>
+        <h1><%= signeData.nom %></h1>
+      </div>
+
+      <div id="prediction" class="prediction-card">
+        <p class="prediction-positif">✨ <%= prediction.message.positif %>.</p>
+        <p class="prediction-conseil">🌟 <%= prediction.message.conseil %>.</p>
+        <p class="prediction-avertissement">
+          ⚠️ <%= prediction.message.avertissement %>.
+        </p>
+        <p class="prediction-conclusion">
+          <%= prediction.message.conclusion %>.
+        </p>
+      </div>
+
+      <a class="button bottom-button retour" href="/horoscope">⬅️</a>
+    </div>
+  </body>
+</html>
