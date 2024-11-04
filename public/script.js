@@ -5,11 +5,9 @@ document.getElementById("emoji").addEventListener("click", () => {
     navigator.vibrate([
       420, 100, 420, 100, 420, 100, 420, 100, 420, 100, 420, 100, 420,
     ]);
+  } else {
+    alert("Vibration non supportée");
   }
-  // ajouter le meme emoji dans l'url
-  window.location.assign(
-    `${window.location.pathname}${document.getElementById("emoji").textContent}`
-  );
 });
 
 // retour à la page précédente si la page précédente existe sinon aller à l'accueil

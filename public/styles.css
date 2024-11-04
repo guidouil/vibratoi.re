@@ -95,7 +95,7 @@ p {
 }
 
 /* Emoji plein écran et centré */
-.emoji {
+#emoji {
   font-size: 40vh;
   animation: vibrate 0.1s infinite;
   line-height: 1;
@@ -115,8 +115,9 @@ button,
   border: none;
   background-color: #333;
   color: #fff;
-  border-radius: 5px;
+  border-radius: 10px;
   transition: background-color 0.3s;
+  font-size: 2rem;
 }
 
 button:hover,
