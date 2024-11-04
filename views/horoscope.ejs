@@ -5,22 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Horoscope Vibratoire</title>
     <link rel="stylesheet" href="/styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/beercss@3.7.12/dist/cdn/beer.min.css"
+      rel="stylesheet"
+    />
+
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/beercss@3.7.12/dist/cdn/beer.min.js"
+    ></script>
   </head>
   <body>
-    <div class="container">
-      <a class="grand-emoji" href="/🌟">🌟</a>
-      <h1>Horoscope Vibratoi.re<sup>&reg;</sup></h1>
+    <main class="responsive">
+      <div class="center-align">
+        <a class="grand-emoji" href="/🌟">🌟</a>
+      </div>
+      <h2 class="small center-align">Horoscope Vibratoi.re®</h2>
 
-      <div class="signes-grid">
+      <div class="grid">
         <% Object.entries(signesData).forEach(([key, value]) => { %>
-        <a href="/horoscope/<%= key %>" class="signe-card">
-          <div class="signe-emoji"><%= value.emoji %></div>
-          <div class="signe-nom"><%= value.nom %></div>
-        </a>
+        <div class="s3">
+          <a href="/horoscope/<%= key %>" class="signe-card">
+            <div class="signe-emoji"><%= value.emoji %></div>
+            <div class="signe-nom"><%= value.nom %></div>
+          </a>
+        </div>
         <% }) %>
       </div>
-
-      <a class="button" href="/">⬅️</a>
-    </div>
+      <div class="large-space"></div>
+      <a class="button responsive" href="/">Retour</a>
+    </main>
   </body>
 </html>
