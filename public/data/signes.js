@@ -62,6 +62,18 @@ const phrases = {
     "alors que les énergies de la Lune sont en phase ascendante",
     "pendant que la Lune est en phase descendante",
     "alors que les énergies de la Lune sont en phase descendante",
+    "sous l'influence mystérieuse de l'étoile polaire",
+    "grâce à l'alignement parfait des cristaux cosmiques",
+    "pendant que les anneaux de Saturne dansent",
+    "alors que les constellations forment un sourire",
+    "sous la protection des anciens sages stellaires",
+    "durant cette rare configuration astrale",
+    "en harmonie avec la musique des sphères",
+    "pendant que les étoiles filantes tracent votre chemin",
+    "alors que l'univers vous fait un clin d'œil complice",
+    "sous la bienveillance des gardiens célestes",
+    "grâce aux énergies du triangle d'or cosmique",
+    "pendant que les vortex dimensionnels s'alignent",
   ],
   conseil: [
     "Prenez le temps de méditer sur vos vibrations intérieures",
@@ -99,6 +111,18 @@ const phrases = {
     "durant cette phase d'éveil collectif",
     "en cette période de renouveau karmique",
     "alors que les voiles dimensionnels s'amincissent",
+    "en cette période de grand éveil cosmique",
+    "pendant que les portails énergétiques sont grands ouverts",
+    "alors que la conscience collective s'élève",
+    "durant cette phase d'expansion universelle",
+    "sous l'influence des maîtres ascensionnés",
+    "pendant que les codes sacrés se révèlent",
+    "alors que la matrice divine pulse",
+    "en cette période de recalibrage vibratoire",
+    "durant l'activation des codes galactiques",
+    "pendant que les fréquences s'harmonisent",
+    "alors que les prophéties s'accomplissent",
+    "sous la guidance des êtres de lumière",
   ],
   avertissement: [
     "Attention aux déséquilibres énergétiques",
@@ -135,6 +159,18 @@ const phrases = {
     "à cause des interférences planétaires",
     "en cette période de grand changement astral",
     "lors de ce passage délicat des planètes",
+    "à cause des fluctuations du champ quantique",
+    "en raison des perturbations dans la force",
+    "suite aux caprices des vents solaires",
+    "à cause des interférences cosmiques inattendues",
+    "en raison des turbulences dans le vortex temporel",
+    "pendant cette phase de réajustement galactique",
+    "durant ce passage délicat entre les dimensions",
+    "à cause des remous dans l'océan cosmique",
+    "suite aux variations du flux énergétique universel",
+    "en raison des anomalies dans la trame astrale",
+    "pendant cette période de purification karmique",
+    "durant ce grand nettoyage céleste",
   ],
   conclusion: [
     "Votre chemin s'éclaire pas à pas",
@@ -189,24 +225,64 @@ const phrases = {
     "mais ne nous emballons pas",
     "enfin... on l'espère",
     "si les astres ne font pas grève",
+    "selon les calculs des mathématiques célestes",
+    "d'après le manuel des lois universelles",
+    "si les extraterrestres ne s'en mêlent pas",
+    "sous réserve de validation par le conseil des sages",
+    "après vérification dans le grand livre cosmique",
+    "si les licornes galactiques sont d'accord",
+    "selon les prévisions du GPS spirituel",
+    "d'après le baromètre mystique",
+    "si les algorithmes célestes ne plantent pas",
+    "conformément au planning cosmique",
+    "si le karma ne fait pas de mise à jour",
+    "après consultation du service client universel",
   ],
 };
 
-function genererPhrase(base, complements) {
+function genererPhraseAvecComplement(base, complements, probabilite = 0.85) {
   const phrase = base[Math.floor(Math.random() * base.length)];
-  const complement =
-    complements[Math.floor(Math.random() * complements.length)];
-  return `${phrase}, ${complement}`;
+
+  // Utilisation d'une probabilité pour l'ajout de compléments
+  if (Math.random() < probabilite) {
+    // Sélection de 1 ou 2 compléments avec une faible probabilité pour 2
+    const nbComplements = Math.random() < 0.15 ? 2 : 1;
+
+    if (nbComplements === 1) {
+      const complement =
+        complements[Math.floor(Math.random() * complements.length)];
+      return `${phrase}, ${complement}`;
+    } else {
+      // Sélection de deux compléments différents
+      let complement1, complement2;
+      do {
+        complement1 =
+          complements[Math.floor(Math.random() * complements.length)];
+        complement2 =
+          complements[Math.floor(Math.random() * complements.length)];
+      } while (complement1 === complement2);
+
+      return `${phrase}, ${complement1} et ${complement2}`;
+    }
+  }
+
+  return phrase;
 }
 
 function genererHoroscope(signe) {
-  const positif = genererPhrase(phrases.positif, phrases.complementsPositif);
-  const conseil = genererPhrase(phrases.conseil, phrases.complementsConseil);
-  const avertissement = genererPhrase(
+  const positif = genererPhraseAvecComplement(
+    phrases.positif,
+    phrases.complementsPositif
+  );
+  const conseil = genererPhraseAvecComplement(
+    phrases.conseil,
+    phrases.complementsConseil
+  );
+  const avertissement = genererPhraseAvecComplement(
     phrases.avertissement,
     phrases.complementsAvertissement
   );
-  const conclusion = genererPhrase(
+  const conclusion = genererPhraseAvecComplement(
     phrases.conclusion,
     phrases.complementsConclusion
   );

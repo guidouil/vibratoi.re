@@ -6,7 +6,9 @@ document.getElementById("emoji").addEventListener("click", () => {
       420, 100, 420, 100, 420, 100, 420, 100, 420, 100, 420, 100, 420,
     ]);
   } else {
-    alert("Vibration non supportée");
+    alert(
+      "Seul les Android peuvent transmettre l'énergie vibratoi.re, pas les iMachins 😅"
+    );
   }
 });
 

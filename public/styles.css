@@ -70,15 +70,16 @@ p {
 
 /* Conteneur principal */
 .container {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  position: relative;
+  justify-content: flex-start;
   text-align: center;
-  overflow: hidden;
 }
 
 .emoji-grid {
@@ -179,19 +180,26 @@ button:hover,
 
 .signes-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  max-width: 600px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  width: 100%;
+  max-width: 800px;
   margin: 30px auto;
+  padding: 0 15px;
 }
 
 .signe-card {
   background: rgba(255, 255, 255, 0.1);
-  padding: 20px;
+  padding: 15px;
   border-radius: 15px;
   backdrop-filter: blur(10px);
   text-align: center;
   transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
 }
 
 .signe-card:hover {
@@ -199,13 +207,12 @@ button:hover,
 }
 
 .signe-emoji {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 5vw, 2.5rem);
   margin-bottom: 10px;
 }
 
 .signe-nom {
-  font-size: 1rem;
-  color: inherit;
+  font-size: clamp(0.8rem, 3vw, 1rem);
 }
 
 .prediction-card div {
@@ -244,4 +251,35 @@ button:hover,
   border-left: 4px solid #9C27B0;
   border-right: 4px solid #9C27B0;
   margin-top: 30px !important;
+}
+
+/* Media queries pour différentes tailles d'écran */
+@media (max-width: 768px) {
+  .signes-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+  }
+
+  .prediction-card div {
+    font-size: 1rem;
+    padding: 8px;
+  }
+
+  .prediction-title {
+    font-size: 1.2rem;
+  }
+
+  .grand-emoji {
+    font-size: clamp(3rem, 8vw, 4rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
 }
