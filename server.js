@@ -20,6 +20,16 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+// API pour les horoscopes
+app.get("/api/signes", (req, res) => {
+  res.json(signesData);
+});
+
+app.get("/api/horoscope/:signe", (req, res) => {
+  const signe = req.params.signe.toLowerCase();
+  res.json(genererHoroscope(signe));
+});
+
 // Page à propos
 app.get("/about", (req, res) => {
   res.render("about");
