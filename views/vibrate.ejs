@@ -1,43 +1,24 @@
-<!DOCTYPE html>
-<html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= emoji %>Vibratoi.re</title>
-    <link rel="stylesheet" href="/styles.css" />
-    <!-- Open Graph -->
-    <meta name="twitter:card" content="summary" />
-    <meta
-      name="twitter:title"
-      content="Vibratoire — Canalise l'énergie cachée"
-    />
-    <meta
-      name="twitter:description"
-      content="Explore les vibrations mystérieuses des énergies invisibles. Oseras-tu découvrir ?"
-    />
-    <meta name="twitter:url" content="https://vibratoi.re/" />
-    <meta
-      property="og:title"
-      content="Vibratoi.re — Canalise l'énergie cachée"
-    />
-    <meta
-      property="og:description"
-      content="Explore les vibrations mystérieuses des énergies invisibles. Oseras-tu découvrir ?"
-    />
-    <meta property="og:url" content="https://vibratoi.re/<%= emoji %>" />
-    <meta property="og:type" content="website" />
-  </head>
-  <body>
-    <div class="container">
-      <div class="emoji" id="emoji"><%= emoji %></div>
-      <!-- petit texte en dessous de l'émoji affiché pour les utilisateurs Android uniquement-->
-      <small class="android-only"
-        >Cliquez sur l'émoji pour ressentir l'énergie vibratoi.re<sup
-          >&reg;</sup
-        ></small
-      >
-      <button class="button bottom-button" id="backButton">⬅️</button>
-    </div>
-  </body>
-  <script src="/script.js"></script>
-</html>
+<%- contentFor('body') %>
+<section class="center-align large">
+  <div class="large-space"></div>
+  <div class="emoji" id="emoji"><%= emoji %></div>
+  <p class="small-text center-align"></p>
+    Cliquez sur l'émoji pour ressentir l'énergie vibratoi.re<sup>&reg;</sup>
+  </p>
+</section>
+
+<%- contentFor('scripts') %>
+<script >
+  document.getElementById("emoji").addEventListener("click", () => {
+    // Vibration du téléphone
+    if (navigator.vibrate) {
+      navigator.vibrate([
+        420, 100, 420, 100, 420, 100, 420, 100, 420, 100, 420, 100, 420,
+      ]);
+    } else {
+      alert(
+        "Seul les Android peuvent transmettre l'énergie vibratoi.re, pas les iMachins 😅"
+      );
+    }
+  });
+</script>

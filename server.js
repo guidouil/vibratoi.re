@@ -1,12 +1,15 @@
 const express = require("express");
 const path = require("path");
 const { signesData, genererHoroscope } = require("./public/data/signes.js");
+const expressLayouts = require("express-ejs-layouts");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Configurer EJS comme moteur de rendu et configurer le dossier public
+// Configurer EJS et les layouts
 app.set("view engine", "ejs");
+app.use(expressLayouts);
+app.set("layout", "layouts/layout");
 app.use(express.static(path.join(__dirname, "public")));
 
 // Fonction pour vérifier si un caractère est un emoji
@@ -32,23 +35,24 @@ app.get("/api/horoscope/:signe", (req, res) => {
 
 // Page à propos
 app.get("/about", (req, res) => {
-  res.render("about");
+  res.render("about", { title: "À propos de Vibratoi.re®" });
 });
 
 // Route pour la page de sélection du signe
 app.get("/horoscope", (req, res) => {
-  res.render("horoscope", { signesData });
+  res.render("horoscope", { title: "Horoscope Vibratoi.re®", signesData });
 });
 
 // Route pour l'horoscope d'un signe spécifique
 app.get("/horoscope/:signe", (req, res) => {
   const signe = req.params.signe.toLowerCase();
-  if (!signesData[signe]) {
+  const signeData = signesData.find((s) => s.id === signe);
+  if (!signeData) {
     return res.redirect("/horoscope");
   }
   res.render("horoscope-signe", {
-    signe,
-    signeData: signesData[signe],
+    title: `Horoscope ${signeData.nom}`,
+    signeData,
     prediction: genererHoroscope(signe),
   });
 });
@@ -63,7 +67,7 @@ app.get("/:emoji", async (req, res) => {
   }
 
   // Afficher la page avec Open Graph
-  res.render("vibrate", { emoji });
+  res.render("vibrate", { title: `Vibratoi.re® ${emoji}`, emoji });
 });
 
 app.listen(PORT, () => {

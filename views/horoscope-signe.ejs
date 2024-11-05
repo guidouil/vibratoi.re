@@ -1,40 +1,21 @@
-<!DOCTYPE html>
-<html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Horoscope <%= signeData.nom %></title>
-    <link rel="stylesheet" href="/styles.css" />
-  </head>
-  <body>
-    <div class="container">
-      <div class="signe-header">
-        <a class="grand-emoji" href="/<%= signeData.emoji %>"><%= signeData.emoji %></a>
-        <h1><%= signeData.nom %></h1>
-      </div>
-
-      <div id="prediction" class="prediction-card">
-        <div class="prediction-positif">
-          <p class="prediction-title">✨ Positif : </p>
-          <p><%= prediction.message.positif %>.</p>
-        </div>
-        <div class="prediction-conseil">
-          <p class="prediction-title">🌟 Conseil :</p>
-          <p><%= prediction.message.conseil %>.</p>
-        </div>
-        <div class="prediction-avertissement">
-          <p class="prediction-title">⚠️ Avertissement :</p>
-          <p><%= prediction.message.avertissement %>.</p>
-        </div>
-        <div class="prediction-conclusion">
-          <p class="prediction-title">🔮 Conclusion</p>
-          <%= prediction.message.conclusion %>.
-        </p>
-      </div>
-
-      <br />
-      <br />
-      <a class="button bottom-button retour" href="/horoscope">⬅️</a>
-    </div>
-  </body>
-</html>
+<%- contentFor('body') %>
+<div id="prediction" class="prediction-card">
+  <div class="prediction-positif">
+    <p class="prediction-title">✨ Positif : </p>
+    <p><%= prediction.message.positif %>.</p>
+  </div>
+  <div class="prediction-conseil">
+    <p class="prediction-title">🌟 Conseil :</p>
+    <p><%= prediction.message.conseil %>.</p>
+  </div>
+  <div class="prediction-avertissement">
+    <p class="prediction-title">⚠️ Avertissement :</p>
+    <p><%= prediction.message.avertissement %>.</p>
+  </div>
+  <div class="prediction-conclusion">
+    <p class="prediction-title">🔮 Conclusion</p>
+    <%= prediction.message.conclusion %>.
+  </p>
+</div>
+<div class="large-space"></div>
+<a class="button bottom-button retour" href="/horoscope">⬅️</a>

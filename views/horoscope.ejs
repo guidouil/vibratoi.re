@@ -1,39 +1,11 @@
-<!DOCTYPE html>
-<html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Horoscope Vibratoire</title>
-    <link rel="stylesheet" href="/styles.css" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/beercss@3.7.12/dist/cdn/beer.min.css"
-      rel="stylesheet"
-    />
-
-    <script
-      type="module"
-      src="https://cdn.jsdelivr.net/npm/beercss@3.7.12/dist/cdn/beer.min.js"
-    ></script>
-  </head>
-  <body>
-    <main class="responsive">
-      <div class="center-align">
-        <a class="grand-emoji" href="/🌟">🌟</a>
-      </div>
-      <h2 class="small center-align">Horoscope Vibratoi.re®</h2>
-
-      <div class="grid">
-        <% Object.entries(signesData).forEach(([key, value]) => { %>
-        <div class="s3">
-          <a href="/horoscope/<%= key %>" class="signe-card">
-            <div class="signe-emoji"><%= value.emoji %></div>
-            <div class="signe-nom"><%= value.nom %></div>
-          </a>
-        </div>
-        <% }) %>
-      </div>
-      <div class="large-space"></div>
-      <a class="button responsive" href="/">Retour</a>
-    </main>
-  </body>
-</html>
+<%- contentFor('body') %>
+<div class="grid">
+  <% signesData.forEach((signe) => { %>
+  <div class="s3">
+    <a href="/horoscope/<%= signe.id %>" class="signe-card">
+      <div class="signe-emoji"><%= signe.emoji %></div>
+      <div class="signe-nom"><%= signe.nom %></div>
+    </a>
+  </div>
+  <% }) %>
+</div>

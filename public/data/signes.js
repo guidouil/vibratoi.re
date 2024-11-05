@@ -1,17 +1,17 @@
-const signesData = {
-  belier: { nom: "Bélier", emoji: "♈" },
-  taureau: { nom: "Taureau", emoji: "♉" },
-  gemeaux: { nom: "Gémeaux", emoji: "♊" },
-  cancer: { nom: "Cancer", emoji: "♋" },
-  lion: { nom: "Lion", emoji: "♌" },
-  vierge: { nom: "Vierge", emoji: "♍" },
-  balance: { nom: "Balance", emoji: "♎" },
-  scorpion: { nom: "Scorpion", emoji: "♏" },
-  sagittaire: { nom: "Sagittaire", emoji: "♐" },
-  capricorne: { nom: "Capricorne", emoji: "♑" },
-  verseau: { nom: "Verseau", emoji: "♒" },
-  poissons: { nom: "Poissons", emoji: "♓" },
-};
+const signesData = [
+  { id: "belier", nom: "Bélier", emoji: "♈" },
+  { id: "taureau", nom: "Taureau", emoji: "♉" },
+  { id: "gemeaux", nom: "Gémeaux", emoji: "♊" },
+  { id: "cancer", nom: "Cancer", emoji: "♋" },
+  { id: "lion", nom: "Lion", emoji: "♌" },
+  { id: "vierge", nom: "Vierge", emoji: "♍" },
+  { id: "balance", nom: "Balance", emoji: "♎" },
+  { id: "scorpion", nom: "Scorpion", emoji: "♏" },
+  { id: "sagittaire", nom: "Sagittaire", emoji: "♐" },
+  { id: "capricorne", nom: "Capricorne", emoji: "♑" },
+  { id: "verseau", nom: "Verseau", emoji: "♒" },
+  { id: "poissons", nom: "Poissons", emoji: "♓" },
+];
 
 const phrases = {
   positif: [
@@ -270,6 +270,8 @@ function genererPhraseAvecComplement(base, complements, probabilite = 0.85) {
 }
 
 function genererHoroscope(signe) {
+  const signeData = signesData.find((s) => s.id === signe);
+
   const positif = genererPhraseAvecComplement(
     phrases.positif,
     phrases.complementsPositif
@@ -288,8 +290,8 @@ function genererHoroscope(signe) {
   );
 
   return {
-    signe: signesData[signe].nom,
-    emoji: signesData[signe].emoji,
+    signe: signeData.nom,
+    emoji: signeData.emoji,
     message: {
       positif,
       conseil,

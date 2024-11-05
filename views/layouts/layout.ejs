@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= typeof title !== 'undefined' ? title : 'Vibratoi.re' %></title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/beercss@3.7.12/dist/cdn/beer.min.css"
+      rel="stylesheet"
+    />
+    <!-- Theme beer.css -->
+    <link rel="stylesheet" href="/theme.css" />
+
+    <!-- Open Graph -->
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="Vibratoi.re — Canalise l'énergie cachée"
+    />
+    <meta
+      name="twitter:description"
+      content="Explore les vibrations mystérieuses des énergies invisibles. Oseras-tu découvrir ?"
+    />
+    <meta name="twitter:url" content="https://vibratoi.re/" />
+    <meta
+      property="og:title"
+      content="Vibratoi.re — Canalise l'énergie cachée"
+    />
+    <meta
+      property="og:description"
+      content="Explore les vibrations mystérieuses des énergies invisibles. Oseras-tu découvrir ?"
+    />
+    <meta property="og:url" content="https://vibratoi.re/" />
+    <meta property="og:type" content="website" />
+
+    <%- typeof extraHead !== 'undefined' ? extraHead : '' %>
+  </head>
+  <body>
+    <header class="fixed responsive max primary-container">
+      <nav>
+        <% if (typeof title !== 'undefined') { %>
+        <button class="circle transparent" onclick="window.history.back()">
+          <i>arrow_back</i>
+        </button>
+        <h4 class="max"><%= title %></h4>
+        <% } else { %>
+        <h4 class="left-padding">Vibratoi.re</h4>
+        <% } %>
+      </nav>
+    </header>
+
+    <main class="responsive"><%- body %></main>
+
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/beercss@3.7.12/dist/cdn/beer.min.js"
+    ></script>
+    <%- typeof scripts !== 'undefined' ? scripts : '' %>
+  </body>
+</html>

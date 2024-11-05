@@ -1,94 +1,47 @@
-<!DOCTYPE html>
-<html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Harmonise ton Aura avec des Emojis Vibrants !</title>
-    <link rel="stylesheet" href="/styles.css" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/beercss@3.7.12/dist/cdn/beer.min.css"
-      rel="stylesheet"
-    />
+<%- contentFor('extraHead') %>
+<script type="module">
+  import "https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js";
+  import fr from "https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/i18n/fr.js";
+  document.addEventListener("DOMContentLoaded", () => {
+    const picker = document.querySelector("emoji-picker");
+    picker.i18n = fr;
+    picker.locale = "fr";
+    picker.dataSource =
+      "https://cdn.jsdelivr.net/npm/emojibase-data@5/fr/data.json";
+  });
+  document
+    .querySelector("emoji-picker")
+    .addEventListener("emoji-click", (event) => {
+      // console.log(event.detail);
+      window.location.assign(`/${event.detail.unicode}`);
+    });
+</script>
 
-    <script
-      type="module"
-      src="https://cdn.jsdelivr.net/npm/beercss@3.7.12/dist/cdn/beer.min.js"
-    ></script>
-    <!-- Open Graph -->
-    <meta name="twitter:card" content="summary" />
-    <meta
-      name="twitter:title"
-      content="Vibratoi.re — Canalise l'énergie cachée"
-    />
-    <meta
-      name="twitter:description"
-      content="Explore les vibrations mystérieuses des énergies invisibles. Oseras-tu découvrir ?"
-    />
-    <meta name="twitter:url" content="https://vibratoi.re/" />
-    <meta
-      property="og:title"
-      content="Vibratoire — Canalise l'énergie cachée"
-    />
-    <meta
-      property="og:description"
-      content="Explore les vibrations mystérieuses des énergies invisibles. Oseras-tu découvrir ?"
-    />
-    <meta property="og:url" content="https://vibratoi.re/" />
-    <meta property="og:type" content="website" />
-    <!-- emoji picker -->
-    <script type="module">
-      import "https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js";
-      import fr from "https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/i18n/fr.js";
+<%- contentFor('body') %>
+<div class="row center-align">
+  <p>Nouveau :</p>
+</div>
+<a class="button large responsive" href="/horoscope">
+  <span class="large-text bold">Consulter l'horoscope Vibratoi.re®</span>
+</a>
+<div class="space"></div>
+<p class="center-align large-text">Sinon, choisis un emoji :</p>
+<div class="grid no-margin">
+  <div class="m3 l4"></div>
+  <div class="s12 m6 l4">
+    <article class="border small-padding">
+      <emoji-picker class="center"></emoji-picker>
+    </article>
+  </div>
+  <div class="m3 l4"></div>
+</div>
 
-      // Attendre que le DOM soit chargé
-      document.addEventListener("DOMContentLoaded", () => {
-        const picker = document.querySelector("emoji-picker");
-        picker.i18n = fr;
-        picker.locale = "fr";
-        picker.dataSource =
-          "https://cdn.jsdelivr.net/npm/emojibase-data@5/fr/data.json";
-      });
-    </script>
-  </head>
-  <body>
-    <main class="responsive">
-      <h1 class="center-align">Vibratoi.re<span class="reg">&reg;</span></h1>
-      <div class="space"></div>
-      <div class="row center-align">
-        <p>Nouveau :</p>
-      </div>
-      <a class="button large responsive" href="/horoscope">
-        <span class="large-text bold">Consulter l'horoscope Vibratoi.re®</span>
-      </a>
-      <div class="space"></div>
-      <p class="center-align large-text">Sinon, choisis un emoji :</p>
-      <div class="grid no-margin">
-        <div class="m3 l4"></div>
-        <div class="s12 m6 l4">
-          <article class="border small-padding">
-            <emoji-picker class="center"></emoji-picker>
-          </article>
-        </div>
-        <div class="m3 l4"></div>
-      </div>
+<div class="large-space"></div>
 
-      <div class="large-space"></div>
-
-      <a class="button border responsive" href="/about">
-        En savoir plus sur l’énergie vibratoi.re®
-      </a>
-      <div class="large-space"></div>
-      <div class="center-align">
-        <a class="button" target="_blank" href="https://x.com/guidouil">𝙶𝙳🍌</a>
-      </div>
-    </main>
-  </body>
-  <script>
-    document
-      .querySelector("emoji-picker")
-      .addEventListener("emoji-click", (event) => {
-        // console.log(event.detail);
-        window.location.assign(`/${event.detail.unicode}`);
-      });
-  </script>
-</html>
+<a class="button border responsive" href="/about">
+  En savoir plus sur l’énergie vibratoi.re®
+</a>
+<div class="large-space"></div>
+<div class="center-align">
+  <a class="button" target="_blank" href="https://x.com/guidouil">𝙶𝙳🍌</a>
+</div>
