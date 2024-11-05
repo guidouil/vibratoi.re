@@ -35,12 +35,12 @@ app.get("/api/horoscope/:signe", (req, res) => {
 
 // Page à propos
 app.get("/about", (req, res) => {
-  res.render("about", { title: "À propos de Vibratoi.re®" });
+  res.render("about", { title: "Énergie Vibratoi.®e" });
 });
 
 // Route pour la page de sélection du signe
 app.get("/horoscope", (req, res) => {
-  res.render("horoscope", { title: "Horoscope Vibratoi.re®", signesData });
+  res.render("horoscope", { title: "Horoscope Vibratoi.®e", signesData });
 });
 
 // Route pour l'horoscope d'un signe spécifique
@@ -63,11 +63,13 @@ app.get("/:emoji", async (req, res) => {
 
   // Ignorer les requêtes non emoji comme favicon.ico
   if (!isEmoji(emoji)) {
-    return res.status(404).render("vibrate", { emoji: "🍌" });
+    return res
+      .status(404)
+      .render("vibrate", { title: "Symbole Vibratoi.®e", emoji: "🍌" });
   }
 
   // Afficher la page avec Open Graph
-  res.render("vibrate", { title: `Vibratoi.re® ${emoji}`, emoji });
+  res.render("vibrate", { title: "Symbole Vibratoi.®e", emoji });
 });
 
 app.listen(PORT, () => {

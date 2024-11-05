@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= typeof title !== 'undefined' ? title : 'Vibratoi.re' %></title>
+    <title><%= typeof title !== 'undefined' ? title : 'Vibratoi.®e' %></title>
     <link rel="stylesheet" href="/styles.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/beercss@3.7.12/dist/cdn/beer.min.css"
@@ -43,14 +43,14 @@
         <button class="circle transparent" onclick="window.history.back()">
           <i>arrow_back</i>
         </button>
-        <h4 class="max"><%= title %></h4>
+        <h4 class="max small"><%= title %></h4>
         <% } else { %>
-        <h4 class="left-padding">Vibratoi.re</h4>
+        <h4 class="left-padding">Vibratoi.&reg;e</h4>
         <% } %>
       </nav>
     </header>
 
-    <main class="responsive"><%- body %></main>
+    <main class="responsive scroll"><%- body %></main>
 
     <script
       type="module"
