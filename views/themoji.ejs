@@ -1,0 +1,111 @@
+<%- contentFor('body') %>
+<div class="center-align">
+  <h5 class="small">
+    Sélectionnez 5️⃣ symboles qui résonnent avec votre énergie vibratoire
+  </h5>
+</div>
+
+<div id="selectedEmojis" class="grid center-align">
+  <div class="s1"></div>
+  <% for(let i = 0; i < 5; i++) { %>
+  <div class="s2 center-align">
+    <div class="signe-card emoji-slot" data-index="<%= i %>">
+      <div class="signe-emoji">➕</div>
+    </div>
+  </div>
+  <% } %>
+  <div class="s1"></div>
+</div>
+
+<div class="space"></div>
+<emoji-picker class="center" id="emojiPicker"></emoji-picker>
+
+<div id="resultat" class="prediction-card" style="display: none"></div>
+
+<%- contentFor('scripts') %>
+<script type="module">
+  import "https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js";
+  import fr from "https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/i18n/fr.js";
+
+  const selectedEmojis = new Array(5).fill(null);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const picker = document.querySelector("emoji-picker");
+    picker.i18n = fr;
+    picker.locale = "fr";
+    picker.dataSource =
+      "https://cdn.jsdelivr.net/npm/emojibase-data@5/fr/data.json";
+  });
+
+  document
+    .querySelector("emoji-picker")
+    .addEventListener("emoji-click", (event) => {
+      const emptySlot = selectedEmojis.findIndex((emoji) => emoji === null);
+      if (emptySlot !== -1) {
+        selectedEmojis[emptySlot] = event.detail.unicode;
+        document.querySelector(
+          `[data-index="${emptySlot}"] .signe-emoji`
+        ).textContent = event.detail.unicode;
+
+        if (!selectedEmojis.includes(null)) {
+          genererThemoji();
+        }
+      }
+    });
+
+  async function genererThemoji() {
+    const response = await fetch("/api/themoji", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ emojis: selectedEmojis }),
+    });
+
+    const themoji = await response.json();
+    afficherResultat(themoji);
+  }
+
+  function afficherResultat(themoji) {
+    const resultat = document.getElementById("resultat");
+    const emojiPicker = document.getElementById("emojiPicker");
+
+    resultat.innerHTML = themoji
+      .map(
+        (prediction) => `
+        <div class="themoji-card">
+          <div class="themoji-emoji">${prediction.emoji}</div>
+          <h3 class="themoji-titre">${prediction.titre}</h3>
+          <p class="themoji-interpretation">${prediction.interpretation}</p>
+          <p class="themoji-conseil"><em>${prediction.conseil}</em></p>
+          <div class="themoji-tags">
+            ${prediction.mots_clefs
+              .map(
+                (tag) => `
+                <span class="tag">✧ ${tag}</span>
+              `
+              )
+              .join("")}
+          </div>
+        </div>
+      `
+      )
+      .join("");
+
+    // Masquer le sélecteur d'emoji et afficher le résultat
+    emojiPicker.style.display = "none";
+    resultat.style.display = "block";
+  }
+
+  function recommencer() {
+    // Réinitialiser les emojis sélectionnés
+    selectedEmojis.fill(null);
+
+    // Réinitialiser l'affichage des slots
+    document.querySelectorAll(".signe-emoji").forEach((slot) => {
+      slot.textContent = "➕";
+    });
+
+    // Masquer le résultat et afficher le sélecteur
+    document.getElementById("resultat").style.display = "none";
+    document.getElementById("emojiPicker").style.display = "block";
+  }
+</script>

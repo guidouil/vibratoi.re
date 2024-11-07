@@ -1,98 +1,6 @@
-/* Styles de base */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body,
-html {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background-color: #f5f5f5;
-  transition: background-color 0.3s, color 0.3s;
-  color: #333;
-}
-
-a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bolder;
-}
-
-p {
-  font-size: 1.2rem;
-}
-
-/* Mode sombre */
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #000000;
-    /* Fond noir pour le mode sombre */
-    color: #f5f5f5;
-    /* Texte en couleur claire pour contraste */
-  }
-
-  .container {
-    background-color: #000000;
-    /* Assure que le conteneur aussi est en noir */
-  }
-
-  .emoji {
-    color: #f5f5f5;
-    /* Emoji en couleur claire pour qu'il soit visible sur fond noir */
-  }
-
-  button,
-  .button {
-    background-color: #333;
-    /* Bouton gris foncé pour le mode sombre */
-    color: #f5f5f5;
-    /* Texte du bouton en clair */
-  }
-
-  button:hover,
-  .button:hover {
-    background-color: #555;
-    /* Couleur plus claire au survol pour contraste */
-  }
-
-  a {
-    color: #f5f5f5;
-  }
-}
-
-/* Conteneur principal */
-.container {
-  min-height: 100vh;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  text-align: center;
-}
-
-.emoji-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  font-size: 2rem;
-}
-
-.emoji-grid a {
-  text-decoration: none;
-  display: inline-block;
-  padding: 15px;
+emoji-picker {
+  height: 500px;
+  --emoji-size: clamp(1.4rem, 5vw, 2.4rem);
 }
 
 /* Emoji plein écran et centré */
@@ -100,32 +8,6 @@ p {
   font-size: 40vh;
   animation: vibrate 0.1s infinite;
   line-height: 1;
-}
-
-
-/* Position du bouton en bas */
-.bottom-button {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  cursor: pointer;
-  border: none;
-  background-color: #333;
-  color: #fff;
-  border-radius: 10px;
-  transition: background-color 0.3s;
-  font-size: 2rem;
-}
-
-button:hover,
-.button:hover {
-  background-color: #555;
 }
 
 /* Animation de vibration pour l'emoji */
@@ -143,49 +25,8 @@ button:hover,
   }
 }
 
-/* Ajouter à la fin du fichier */
-.horoscope-card {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 20px;
-  margin: 10px 0;
-  border-radius: 15px;
-  backdrop-filter: blur(10px);
-  max-width: 600px;
-  text-align: left;
-}
-
-.horoscope-card h3 {
-  color: #ffd700;
-  margin-bottom: 10px;
-}
-
 .grand-emoji {
   font-size: 4rem;
-}
-
-#horoscope-container {
-  max-height: 70vh;
-  overflow-y: auto;
-  padding: 20px;
-  width: 100%;
-}
-
-#regenerer {
-  margin: 20px 0;
-  position: relative;
-  bottom: auto;
-  transform: none;
-  left: auto;
-}
-
-.signes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 15px;
-  width: 100%;
-  max-width: 800px;
-  margin: 30px auto;
-  padding: 0 15px;
 }
 
 .signe-card {
@@ -203,16 +44,17 @@ button:hover,
 }
 
 .signe-card:hover {
-  transform: scale(1.05);
+  transform: scale(1.15);
 }
 
 .signe-emoji {
-  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-size: clamp(3rem, 5vw, 4rem);
   margin-bottom: 10px;
 }
 
 .signe-nom {
-  font-size: clamp(0.8rem, 3vw, 1rem);
+  padding: 10px;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
 }
 
 .prediction-card div {
@@ -282,4 +124,58 @@ button:hover,
   h1 {
     font-size: clamp(1.5rem, 6vw, 2rem);
   }
+}
+
+.themoji-card {
+  background: var(--surface-container);
+  padding: 2rem;
+  margin: 1rem 0;
+  border-radius: 1rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.themoji-card:hover {
+  transform: translateY(-2px);
+}
+
+.themoji-emoji {
+  font-size: 3rem !important;
+  margin-bottom: 1rem;
+}
+
+.themoji-titre {
+  color: var(--primary);
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+  font-weight: normal;
+}
+
+.themoji-interpretation {
+  color: var(--on-surface);
+  margin: 1rem 0;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.themoji-conseil {
+  color: var(--secondary);
+  font-style: italic;
+  margin: 1rem 0;
+}
+
+.themoji-tags {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.tag {
+  background: var(--surface-container-high);
+  color: var(--on-surface-variant);
+  padding: 0.3rem 0.8rem;
+  border-radius: 1rem;
+  font-size: 0.9rem;
 }

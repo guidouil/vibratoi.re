@@ -2,6 +2,8 @@ const express = require("express");
 const path = require("path");
 const { signesData, genererHoroscope } = require("./public/data/signes.js");
 const expressLayouts = require("express-ejs-layouts");
+const { genererThemoji } = require("./public/data/themoji.js");
+const emojibaseData = require("./public/data/emojibase-data.json");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -51,10 +53,23 @@ app.get("/horoscope/:signe", (req, res) => {
     return res.redirect("/horoscope");
   }
   res.render("horoscope-signe", {
-    title: `Horoscope ${signeData.nom}`,
+    title: `Horoscope ${signeData.nom} ${signeData.emoji}`,
     signeData,
     prediction: genererHoroscope(signe),
   });
+});
+
+app.post("/api/themoji", express.json(), (req, res) => {
+  const { emojis } = req.body;
+  if (!emojis || !Array.isArray(emojis) || emojis.length !== 5) {
+    return res.status(400).json({ error: "5 emojis sont requis" });
+  }
+  const themoji = genererThemoji(emojis, emojibaseData);
+  res.json(themoji);
+});
+
+app.get("/themoji", (req, res) => {
+  res.render("themoji", { title: "Themoji Vibratoi.®e" });
 });
 
 // Route pour afficher l’emoji vibratoire avec génération d'image si nécessaire

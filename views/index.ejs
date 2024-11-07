@@ -1,13 +1,13 @@
 <%- contentFor('extraHead') %>
 <script type="module">
-  import "https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js";
-  import fr from "https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/i18n/fr.js";
+  import "https://cdn.jsdelivr.net/npm/emoji-picker-element@1.22.8/index.js";
+  import fr from "https://cdn.jsdelivr.net/npm/emoji-picker-element@1.22.8/i18n/fr.js";
   document.addEventListener("DOMContentLoaded", () => {
     const picker = document.querySelector("emoji-picker");
     picker.i18n = fr;
     picker.locale = "fr";
     picker.dataSource =
-      "https://cdn.jsdelivr.net/npm/emojibase-data@5/fr/data.json";
+      "https://cdn.jsdelivr.net/npm/emojibase-data@15.3.2/fr/data.json";
   });
   document
     .querySelector("emoji-picker")
@@ -19,16 +19,25 @@
 
 <%- contentFor('body') %>
 <div class="row center-align">
-  <p>Nouveau :</p>
+  <h5 class="small">Nouveau 👇</h5>
 </div>
-<a class="button large responsive" href="/horoscope">
-  <span class="large-text bold">Consulter l'horoscope Vibratoi.®e</span>
-</a>
+<div class="grid">
+  <div class="s12 m6">
+    <a class="button large responsive" href="/themoji">
+      <span class="large-text bold">Découvrir votre Themoji Vibratoi.®e</span>
+    </a>
+  </div>
+  <div class="s12 m6">
+    <a class="button large responsive secondary" href="/horoscope">
+      <span class="large-text bold">Consulter l'horoscope Vibratoi.®e</span>
+    </a>
+  </div>
+</div>
 <div class="space"></div>
 <div class="divider"></div>
 <div class="space"></div>
 <p class="center-align no-margin">Sinon, choisir un symbole :</p>
-<emoji-picker class="center"></emoji-picker>
+<emoji-picker class="center large"></emoji-picker>
 
 <div class="large-space"></div>
 
