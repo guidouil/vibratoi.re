@@ -1,13 +1,13 @@
 <%- contentFor('extraHead') %>
 <script type="module">
-  import "https://cdn.jsdelivr.net/npm/emoji-picker-element@1.22.8/index.js";
-  import fr from "https://cdn.jsdelivr.net/npm/emoji-picker-element@1.22.8/i18n/fr.js";
+  import "https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js";
+  import fr from "https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/i18n/fr.js";
   document.addEventListener("DOMContentLoaded", () => {
     const picker = document.querySelector("emoji-picker");
     picker.i18n = fr;
     picker.locale = "fr";
     picker.dataSource =
-      "https://cdn.jsdelivr.net/npm/emojibase-data@15.3.2/fr/data.json";
+      "https://cdn.jsdelivr.net/npm/emojibase-data@5/fr/data.json";
   });
   document
     .querySelector("emoji-picker")
