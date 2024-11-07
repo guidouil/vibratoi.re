@@ -72,7 +72,9 @@
       .map(
         (prediction) => `
         <div class="themoji-card">
-          <div class="themoji-emoji">${prediction.emoji}</div>
+          <div class="themoji-emoji"><a href="/${prediction.emoji}">${
+          prediction.emoji
+        }</a></div>
           <h3 class="themoji-titre">${prediction.titre}</h3>
           <p class="themoji-interpretation">${prediction.interpretation}</p>
           <p class="themoji-conseil"><em>${prediction.conseil}</em></p>
