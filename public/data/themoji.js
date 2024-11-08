@@ -16,6 +16,11 @@ const themes = {
       "sentiment",
       "émotion",
       "passion",
+      "rougir",
+      "adorer",
+      "aimer",
+      "amoureux",
+      "béguin",
     ],
     phrases: {
       intro: [
@@ -25,112 +30,205 @@ const themes = {
         "La résonance de %s éveille votre intelligence émotionnelle",
         "Les vibrations de %s harmonisent vos émotions",
         "L'essence de %s ouvre votre cœur à l'amour universel",
-        "La présence de %s amplifie votre sensibilité",
         "%s guide votre voyage émotionnel intérieur",
+        "La tendresse de %s enveloppe votre être",
+        "La sensibilité de %s éveille vos émotions profondes",
+        "Les vibrations de %s touchent votre cœur sacré",
+        "L'amour universel se manifeste à travers %s",
+        "La douceur de %s apaise votre âme",
+        "%s révèle la beauté de vos sentiments",
       ],
       conseil: [
-        "Laissez %s amplifier vos ressentis positifs",
-        "Accueillez les messages émotionnels de %s",
-        "Dansez avec la joie que %s vous apporte",
-        "Ouvrez votre cœur aux énergies de %s",
-        "Respirez l'amour que %s vous transmet",
+        "Laissez %s guider votre cœur vers la lumière",
+        "Accueillez l'amour que %s vous transmet",
+        "Ouvrez votre chakra du cœur à l'énergie de %s",
+        "Dansez avec les vibrations émotionnelles de %s",
+        "Respirez l'essence aimante de %s",
+        "Laissez %s transformer vos émotions en sagesse",
+        "Écoutez le message d'amour de %s",
+        "Permettez à %s d'harmoniser vos ressentis",
+        "Suivez la guidance du cœur de %s",
+        "Baignez-vous dans l'amour inconditionnel de %s",
       ],
     },
   },
-  spirituel: {
-    titre: "Vision Mystique",
-    description: "Votre perception spirituelle",
+  perception: {
+    titre: "Vision Intérieure",
+    description: "Votre perception subtile",
     tags: [
-      "étoile",
+      "yeux",
+      "regarder",
+      "voir",
       "vision",
-      "rêve",
-      "méditation",
-      "réflexion",
-      "pensif",
+      "observer",
+      "captivé",
+      "fasciné",
+      "impressionné",
+      "stupéfait",
+      "surpris",
+      "étonné",
+      "jeter un coup d'œil",
+      "regarder fixement",
+    ],
+    phrases: {
+      intro: [
+        "Le regard de %s ouvre vos perceptions subtiles",
+        "%s éveille votre vision intérieure",
+        "Les yeux de %s révèlent les mystères cachés",
+        "La présence de %s aiguise votre intuition",
+        "L'essence de %s illumine votre regard spirituel",
+      ],
+      conseil: [
+        "Observez les signes subtils de %s",
+        "Laissez %s affiner votre vision intérieure",
+        "Contemplez la sagesse que %s vous révèle",
+        "Ouvrez votre troisième œil aux messages de %s",
+        "Permettez à %s d'élargir votre conscience",
+        "Accueillez les visions que %s vous apporte",
+        "Explorez les dimensions que %s vous dévoile",
+        "Suivez la lumière guidante de %s",
+        "Laissez %s illuminer votre chemin spirituel",
+        "Méditez sur les révélations de %s",
+      ],
+    },
+  },
+  mystere: {
+    titre: "Voile Mystique",
+    description: "Vos énergies mystérieuses",
+    tags: [
       "invisible",
       "mystère",
       "brouillard",
       "nuages",
-      "spirituel",
+      "distrait",
+      "se cacher",
+      "dans les nuages",
+      "visage dans le brouillard",
+      "silence",
+      "chut",
     ],
     phrases: {
       intro: [
-        "La vision mystique de %s éclaire votre chemin",
-        "%s ouvre votre troisième œil à la vérité",
-        "Les messages de %s traversent le voile de l'illusion",
-        "La sagesse de %s pénètre votre conscience",
-        "Les énergies de %s élèvent votre perception",
-      ],
-      conseil: [
-        "Méditez sur les symboles de %s",
-        "Laissez %s guider votre intuition",
-        "Explorez les mystères que %s vous révèle",
-        "Contemplez la sagesse cachée de %s",
-      ],
-    },
-  },
-  energie: {
-    titre: "Flux Vibratoire",
-    description: "Votre fréquence énergétique",
-    tags: [
-      "vibration",
-      "tremblement",
-      "secousse",
-      "énergie",
-      "force",
-      "puissance",
-      "feu",
-      "chaleur",
-      "lumière",
-      "rayonnement",
-      "éclair",
-    ],
-    phrases: {
-      intro: [
-        "Les vibrations de %s traversent votre champ énergétique",
-        "La puissance de %s active vos centres vitaux",
-        "%s fait résonner votre fréquence personnelle",
-        "L'énergie pure de %s harmonise vos chakras",
-        "La force vitale de %s pulse en vous",
-      ],
-      conseil: [
-        "Alignez-vous avec les vibrations de %s",
-        "Laissez l'énergie de %s vous transformer",
-        "Ressentez la puissance de %s dans chaque cellule",
-        "Harmonisez-vous avec la fréquence de %s",
+        "%s vous guide à travers les voiles du mystère",
+        "Les brumes de %s cachent des vérités profondes",
+        "L'essence voilée de %s révèle ses secrets",
+        "La présence mystérieuse de %s vous enveloppe",
       ],
     },
   },
   transformation: {
-    titre: "Métamorphose Cosmique",
+    titre: "Métamorphose Énergétique",
     description: "Votre processus de transformation",
     tags: [
       "changement",
       "transformation",
+      "disparaître",
+      "fondre",
+      "liquide",
+      "liquéfié",
+      "se dissoudre",
       "métamorphose",
       "renaissance",
-      "évolution",
-      "cycle",
-      "mouvement",
-      "transition",
       "renouveau",
     ],
     phrases: {
       intro: [
-        "%s guide votre processus de transformation",
-        "L'essence de %s catalyse votre métamorphose",
-        "Les énergies de %s activent votre renouveau",
-        "La présence de %s accompagne votre évolution",
+        "%s catalyse votre transformation profonde",
+        "L'énergie de %s active votre métamorphose",
+        "La présence de %s dissout les anciennes formes",
+        "Les vibrations de %s accompagnent votre renaissance",
       ],
-      conseil: [
-        "Embrassez les changements que %s apporte",
-        "Laissez %s guider votre transformation",
-        "Accueillez la renaissance que %s initie",
-        "Suivez le chemin évolutif de %s",
+    },
+  },
+  vibration: {
+    titre: "Résonance Vibratoire",
+    description: "Vos fréquences énergétiques",
+    tags: [
+      "vibration",
+      "tremblement",
+      "secousse",
+      "sursaut",
+      "secouer",
+      "hochement",
+      "énergie",
+      "force",
+      "puissance",
+    ],
+    phrases: {
+      intro: [
+        "Les vibrations de %s traversent votre champ énergétique",
+        "%s fait résonner vos fréquences subtiles",
+        "L'onde vibratoire de %s harmonise vos énergies",
+        "La puissance de %s active vos centres vitaux",
+      ],
+    },
+  },
+  sagesse: {
+    titre: "Sagesse Ancestrale",
+    description: "Votre connexion à la sagesse universelle",
+    tags: [
+      "réflexion",
+      "pensif",
+      "compris",
+      "ok",
+      "oui",
+      "malin",
+      "intelligence",
+      "savoir",
+      "connaissance",
+      "intelligent",
+    ],
+    phrases: {
+      intro: [
+        "La sagesse de %s éclaire votre chemin",
+        "%s vous connecte aux connaissances ancestrales",
+        "L'intelligence de %s guide vos pas",
+        "La présence de %s éveille votre sagesse intérieure",
       ],
     },
   },
 };
+
+// Ajout de phrases conseil génériques pour tous les thèmes
+const conseilsGeneriques = [
+  "Méditez sur l'essence divine de %s",
+  "Accueillez les énergies transformatrices de %s",
+  "Laissez %s vous guider vers votre vérité",
+  "Respirez en conscience avec %s",
+  "Ouvrez-vous aux messages cosmiques de %s",
+  "Permettez à %s d'élever votre fréquence vibratoire",
+  "Explorez les mystères que %s vous révèle",
+  "Harmonisez-vous avec la sagesse de %s",
+  "Suivez la guidance spirituelle de %s",
+  "Intégrez les enseignements sacrés de %s",
+  "Laissez %s activer vos dons spirituels",
+  "Connectez-vous à l'intelligence universelle via %s",
+  "Accueillez la transformation que %s initie",
+  "Dansez avec les énergies cosmiques de %s",
+  "Célébrez la présence divine en %s",
+];
+
+// Ajouter les conseils génériques à chaque thème
+Object.values(themes).forEach((theme) => {
+  theme.phrases.conseil = [
+    ...(theme.phrases.conseil || []),
+    ...conseilsGeneriques,
+  ];
+});
+
+function tagMatch(emojiTag, themeTag) {
+  // Recherche partielle et gestion des accents
+  return (
+    emojiTag
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .includes(themeTag.normalize("NFD").replace(/[\u0300-\u036f]/g, "")) ||
+    themeTag
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .includes(emojiTag.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
+  );
+}
 
 function interpreterEmoji(emoji, emojiData = []) {
   const data = emojiData.find((e) => e.emoji === emoji) || {
@@ -138,9 +236,11 @@ function interpreterEmoji(emoji, emojiData = []) {
     tags: [],
   };
 
-  // Trouver le thème le plus pertinent en fonction des tags de l'emoji
+  // Score amélioré avec correspondance partielle
   const themeScore = Object.entries(themes).map(([key, theme]) => {
-    const matchingTags = theme.tags.filter((tag) => data.tags.includes(tag));
+    const matchingTags = theme.tags.filter((themeTag) =>
+      data.tags.some((emojiTag) => tagMatch(emojiTag, themeTag))
+    );
     return { key, score: matchingTags.length };
   });
 
