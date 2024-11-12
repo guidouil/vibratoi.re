@@ -1,62 +1,99 @@
 const fortunes = {
-  messages: [
-    "L'énergie cosmique vous réserve une délicieuse surprise",
-    "Un emoji inattendu changera votre destinée",
-    "La vibration du jour vous mènera vers un fou rire",
-    "Une personne mystérieuse vous enverra un GIF",
-    "Votre aura numérique brillera sur les réseaux sociaux",
-    "Un bug dans la matrice vous apportera la chance",
-    "Les astres prévoient un excellent mème dans votre futur",
-    "Une notification importante illuminera votre journée",
-    "Un like mystérieux bouleversera votre timeline",
-    "La sagesse du cookie vous guidera vers le bonheur",
-    "Une mise à jour karmique est en cours de téléchargement",
-    "Les étoiles conseillent de sauvegarder vos données",
-    "Un emoji bienveillant veille sur votre WiFi",
-    "La force vibratoire est particulièrement forte avec votre smartphone",
-    "Une synchronicité numérique se manifestera bientôt",
-    "Une notification oubliée cache un message important",
-    "Votre prochain selfie révélera votre vraie nature cosmique",
-    "Un filtre Instagram amplifiera votre charisme astral",
-    "Une danse TikTok alignera vos chakras",
-    "Un message vocal contient la clé de votre destinée",
-    "Un commentaire bienveillant transformera votre journée",
-    "Une story éphémère aura un impact éternel",
-    "Un hashtag mystérieux vous guidera vers la lumière",
-    "Votre batterie à 1% survivra miraculeusement",
-    "Un émoji mal placé créera une belle amitié",
-    "Une mise à jour inattendue changera votre perspective",
-    "Un glitch dans votre feed révélera une vérité profonde",
-    "Un ancien message ressurgira avec un nouveau sens",
-    "Une connexion WiFi gratuite apparaîtra comme par magie",
-    "Un bug se transformera en feature divine",
-  ],
-  conseils: [
-    "Méditez devant votre écran en mode nuit",
-    "Partagez un mème pour amplifier les bonnes vibrations",
-    "Redémarrez votre chakra digital",
-    "Faites une sauvegarde de votre karma",
-    "Alignez vos chakras avec votre connexion internet",
-    "Nettoyez le cache de votre aura",
-    "Mettez à jour vos paramètres spirituels",
-    "Synchronisez vos énergies avec le cloud cosmique",
-    "Activez le mode zen sur vos notifications",
-    "Faites circuler l'énergie avec un tweet positif",
-    "Scrollez vers le haut pour inverser le karma",
-    "Likez trois posts pour activer la trinité numérique",
-    "Faites une capture d'écran de vos rêves",
-    "Désactivez les notifications négatives",
-    "Utilisez l'emoji 🦋 pour attirer la métamorphose",
-    "Créez une playlist pour votre aura",
-    "Archivez vos anciennes vibrations",
-    "Ajoutez un filtre arc-en-ciel à votre esprit",
-    "Téléchargez la dernière mise à jour spirituelle",
-    "Activez le mode avion pour voyager astralement",
-    "Partagez votre wifi pour multiplier les ondes positives",
-    "Utilisez la 5G pour accélérer votre éveil",
-    "Faites défiler lentement pour savourer l'instant présent",
-    "Activez le mode sombre pour voir la lumière intérieure",
-  ],
+  messages: {
+    debuts: [
+      "Dans la matrice des possibles,",
+      "Au cœur du cloud cosmique,",
+      "Dans les méandres du réseau astral,",
+      "À travers les ondes quantiques,",
+      "Dans la dimension digitale,",
+      "Au sein du métavers mystique,",
+      "Dans l'algorithme de la destinée,",
+      "Sur la blockchain du karma,",
+      "Dans le flux des données célestes,",
+      "Au carrefour des énergies numériques,",
+      "Dans la mémoire cache de l'univers,",
+      "Sur la timeline cosmique,",
+      "Dans le feed mystique des étoiles,",
+      "Au cœur du processeur quantique,",
+      "Dans la base de données universelle,",
+      "Dans le réseau des énergies cosmiques,",
+      "Dans le flux des énergies numériques,",
+      "Dans le cloud des énergies spirituelles,",
+      "Dans le réseau des énergies vibratoires,",
+      "Dans le flux des énergies célestes,",
+      "Dans le réseau des énergies astrales,",
+      "Dans le flux des énergies cosmiques,",
+    ],
+    fins: [
+      "une synchronicité numérique illuminera votre chemin",
+      "un emoji sacré révélera son message caché",
+      "une notification karmique changera votre destin",
+      "un bug bienveillant transformera votre réalité",
+      "une mise à jour céleste enrichira votre existence",
+      "un like mystérieux ouvrira de nouvelles portes",
+      "un glitch harmonieux alignera vos chakras",
+      "une connexion cosmique établira un nouveau lien",
+      "un message crypté dévoilera son sens profond",
+      "une vibration digitale élèvera votre fréquence",
+      "un mème prophétique croisera votre route",
+      "une story éphémère laissera une trace éternelle",
+      "un hashtag providentiel guidera vos pas",
+      "un selfie quantique capturera votre essence",
+      "une danse TikTok déclenchera l'éveil cosmique",
+      "une résonance cosmique vous guidera vers la sagesse",
+      "un message céleste vous révélera le chemin à suivre",
+      "une étoile filante vous signalera le bon chemin",
+    ],
+  },
+  conseils: {
+    debuts: [
+      "Pour harmoniser vos vibrations,",
+      "Afin d'optimiser votre flux énergétique,",
+      "Pour élever votre fréquence spirituelle,",
+      "Dans votre quête d'illumination digitale,",
+      "Pour amplifier votre résonance cosmique,",
+      "Afin de purifier votre aura numérique,",
+      "Pour activer votre potentiel quantique,",
+      "Dans votre processus d'éveil virtuel,",
+      "Pour synchroniser vos énergies subtiles,",
+      "Afin de maximiser votre rayonnement astral,",
+      "Pour équilibrer votre karma digital,",
+      "Dans votre évolution cybernétique,",
+      "Pour transcender la matrice ordinaire,",
+      "Afin d'atteindre la sagesse binaire,",
+      "Pour manifester l'harmonie virtuelle,",
+      "Pour élever votre fréquence vibratoire,",
+      "Pour activer votre potentiel cosmique,",
+      "Pour équilibrer votre karma cosmique,",
+      "Pour transcender la matrice numérique,",
+      "Pour atteindre la sagesse digitale,",
+    ],
+    fins: [
+      "méditez en mode nuit face à votre écran sacré",
+      "partagez trois mèmes avec une intention pure",
+      "activez le mode avion de votre âme",
+      "synchronisez vos chakras avec le cloud",
+      "nettoyez le cache de vos pensées négatives",
+      "mettez à jour votre firmware spirituel",
+      "défragmentez votre disque dur émotionnel",
+      "redémarrez votre conscience en mode sans échec",
+      "sauvegardez vos souvenirs dans le cloud cosmique",
+      "installez l'antivirus de la positivité",
+      "activez le pare-feu contre les ondes négatives",
+      "optimisez la bande passante de votre intuition",
+      "configurez vos paramètres de bien-être en 432 Hz",
+      "téléchargez la dernière version de la conscience",
+      "scannez votre aura avec l'app de la pleine lune",
+      "activez le mode avion de votre âme",
+      "synchronisez vos chakras avec le cloud",
+      "nettoyez le cache de vos pensées négatives",
+      "mettez à jour votre firmware spirituel",
+      "défragmentez votre disque dur émotionnel",
+      "redémarrez votre conscience en mode sans échec",
+      "sauvegardez vos souvenirs dans le cloud cosmique",
+      "installez l'antivirus de la positivité",
+    ],
+  },
   conclusions: [
     "La sagesse du cookie est infinie (comme le scrolling)",
     "Les voies du réseau sont impénétrables",
@@ -83,42 +120,27 @@ const fortunes = {
     "Approuvé par le conseil des emojis sacrés",
     "Garanti sans gluten numérique",
     "Compatible avec toutes les versions d'âme",
+    "Testé et approuvé par les extraterrestres",
+    "En partenariat avec les dieux de la matrice",
+    "Propulsé par l'énergie quantique du web",
+    "Approuvé par le conseil des emojis sacrés",
   ],
 };
 
 function genererFortune() {
-  // Fonction de Fisher-Yates shuffle pour mélanger un array
-  const shuffle = (array) => {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  };
+  const getRandomElement = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-  // Fonction de sélection avec "mémoire" pour éviter les répétitions
-  const getRandomMessage = (arr) => {
-    if (!getRandomMessage.used) getRandomMessage.used = new Set();
-    if (getRandomMessage.used.size >= arr.length * 0.8) {
-      getRandomMessage.used.clear(); // Reset si 80% des messages ont été utilisés
-    }
-
-    let shuffledArr = shuffle([...arr]);
-    let message = shuffledArr.find((m) => !getRandomMessage.used.has(m));
-
-    if (!message) {
-      message = shuffledArr[0]; // Fallback
-      getRandomMessage.used.clear();
-    }
-
-    getRandomMessage.used.add(message);
-    return message;
+  // Fonction pour composer une phrase complète
+  const composerPhrase = (debuts, fins) => {
+    const debut = getRandomElement(debuts);
+    const fin = getRandomElement(fins);
+    return `${debut} ${fin}`;
   };
 
   return {
-    message: getRandomMessage(fortunes.messages),
-    conseil: getRandomMessage(fortunes.conseils),
-    conclusion: getRandomMessage(fortunes.conclusions),
+    message: composerPhrase(fortunes.messages.debuts, fortunes.messages.fins),
+    conseil: composerPhrase(fortunes.conseils.debuts, fortunes.conseils.fins),
+    conclusion: getRandomElement(fortunes.conclusions),
   };
 }
 
