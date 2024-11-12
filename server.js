@@ -4,6 +4,7 @@ const { signesData, genererHoroscope } = require("./public/data/signes.js");
 const expressLayouts = require("express-ejs-layouts");
 const { genererThemoji } = require("./public/data/themoji.js");
 const emojibaseData = require("./public/data/emojibase-data.json");
+const { genererFortune } = require("./public/data/fortune.js");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -70,6 +71,13 @@ app.post("/api/themoji", express.json(), (req, res) => {
 
 app.get("/themoji", (req, res) => {
   res.render("themoji", { title: "Themoji Vibratoi.®e" });
+});
+
+app.get("/fortune", (req, res) => {
+  res.render("fortune", {
+    title: "Cookie Vibratoi.®e",
+    prediction: genererFortune(),
+  });
 });
 
 // Route pour afficher l’emoji vibratoire avec génération d'image si nécessaire
