@@ -1,7 +1,7 @@
 <%- contentFor('body') %>
-<div class="large-space"></div>
+<!-- <div class="large-space"></div> -->
 <div class="center-align">
-  <div class="grand-emoji" id="fortune-cookie">🥠</div>
+  <div id="fortune-cookie">🥠</div>
   <p class="small" id="fortune-cookie-text">
     Cliquez sur le cookie pour révéler votre fortune vibratoi.®e
   </p>
@@ -10,17 +10,17 @@
 <div id="prediction" class="prediction-card" style="display: none">
   <div class="prediction-positif">
     <p class="prediction-title">✨ Message du Cookie :</p>
-    <p><%= prediction.message %>.</p>
+    <p class="center-align"><%= prediction.message %>.</p>
   </div>
 
   <div class="prediction-conseil">
     <p class="prediction-title">🌟 Conseil Vibratoire :</p>
-    <p><%= prediction.conseil %>.</p>
+    <p class="center-align"><%= prediction.conseil %>.</p>
   </div>
 
   <div class="prediction-conclusion">
     <p class="prediction-title">🥠 Conclusion</p>
-    <%= prediction.conclusion %>.
+    <p class="center-align"><%= prediction.conclusion %>.</p>
   </div>
 </div>
 

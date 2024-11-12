@@ -10,6 +10,12 @@ emoji-picker {
   line-height: 1;
 }
 
+#fortune-cookie {
+  font-size: 10vh;
+  animation: vibrate 0.1s 10;
+  line-height: 1;
+}
+
 /* Animation de vibration pour l'emoji */
 @keyframes vibrate {
   0% {
