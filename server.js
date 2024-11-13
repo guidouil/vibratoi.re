@@ -80,6 +80,10 @@ app.get("/fortune", (req, res) => {
   });
 });
 
+app.get("/bubbles", (req, res) => {
+  res.render("bubbles", { title: "Bulles Vibratoi.®e" });
+});
+
 // Route pour afficher l’emoji vibratoire avec génération d'image si nécessaire
 app.get("/:emoji", async (req, res) => {
   const emoji = decodeURIComponent(req.params.emoji);

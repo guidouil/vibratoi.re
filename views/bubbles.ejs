@@ -1,0 +1,140 @@
+<% contentFor('extraHead') %>
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"
+></script>
+
+<% contentFor('body') %>
+<div class="center-align">
+  <div class="field label prefix border round" id="videoInputField">
+    <i>attach_file</i>
+    <input type="file" id="videoInput" accept="video/*" />
+    <input type="text" id="videoInputText" />
+    <label>Vidéo</label>
+  </div>
+  <div class="space"></div>
+
+  <div style="position: relative; max-width: 100%">
+    <video
+      class="center-align"
+      id="inputVideo"
+      width="360"
+      autoplay
+      style="transform: scaleX(1)"
+    ></video>
+    <canvas
+      id="overlay"
+      style="position: absolute; top: 0; left: 0; transform: scaleX(1)"
+    ></canvas>
+  </div>
+</div>
+
+<% contentFor('scripts') %>
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    let video = document.getElementById("inputVideo");
+    let canvas = document.getElementById("overlay");
+    let ctx = canvas.getContext("2d");
+    let isProcessing = false;
+
+    // Chargement des modèles avec gestion d'erreurs
+    try {
+      console.log("Chargement des modèles...");
+      await Promise.all([
+        faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
+        faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
+        faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
+      ]);
+      console.log("Modèles chargés avec succès");
+    } catch (err) {
+      console.error("Erreur de chargement des modèles:", err);
+    }
+
+    video.addEventListener("loadedmetadata", () => {
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas.style.width = video.clientWidth + "px";
+      canvas.style.height = video.clientHeight + "px";
+    });
+
+    async function detectFaces() {
+      if (video.paused || video.ended || isProcessing) return;
+
+      isProcessing = true;
+      try {
+        const options = new faceapi.TinyFaceDetectorOptions({
+          inputSize: 320,
+          scoreThreshold: 0.3,
+        });
+
+        const detections = await faceapi
+          .detectAllFaces(video, options)
+          .withFaceLandmarks();
+
+        // Créer un masque pour l'extérieur des bulles
+        ctx.fillStyle = "rgba(0, 0, 0, 0.85)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        if (detections && detections.length > 0) {
+          console.log(`Détecté ${detections.length} visages`);
+
+          // Utiliser la méthode composite pour "effacer" les bulles
+          ctx.globalCompositeOperation = "destination-out";
+
+          detections.forEach((detection) => {
+            const { x, y, width, height } = detection.detection.box;
+
+            // Dessiner une bulle transparente
+            ctx.beginPath();
+            ctx.arc(
+              x + width / 2,
+              y + height / 2,
+              Math.max(width, height) / 1.5,
+              0,
+              2 * Math.PI
+            );
+            ctx.fill();
+          });
+
+          // Revenir au mode de composition normal
+          ctx.globalCompositeOperation = "source-over";
+
+          // Dessiner les contours des bulles
+          detections.forEach((detection) => {
+            const { x, y, width, height } = detection.detection.box;
+
+            ctx.beginPath();
+            ctx.arc(
+              x + width / 2,
+              y + height / 2,
+              Math.max(width, height) / 1.5,
+              0,
+              2 * Math.PI
+            );
+            ctx.strokeStyle = "#44d8f1";
+            ctx.lineWidth = 3;
+            ctx.stroke();
+          });
+        }
+      } catch (err) {
+        console.error("Erreur de détection:", err);
+      }
+      isProcessing = false;
+      requestAnimationFrame(detectFaces);
+    }
+
+    video.addEventListener("play", () => {
+      console.log("Vidéo en lecture, démarrage de la détection");
+      detectFaces();
+    });
+
+    document
+      .getElementById("videoInput")
+      .addEventListener("change", async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        video.src = URL.createObjectURL(file);
+        video.style.display = "block";
+      });
+  });
+</script>
