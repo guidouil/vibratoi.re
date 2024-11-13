@@ -10,23 +10,42 @@
     <i>attach_file</i>
     <input type="file" id="videoInput" accept="video/*" />
     <input type="text" id="videoInputText" />
-    <label>Vidéo</label>
+    <label>Vidéo source</label>
   </div>
+
   <div class="space"></div>
 
   <div style="position: relative; max-width: 100%">
     <video
-      class="center-align"
       id="inputVideo"
       width="360"
       autoplay
-      style="transform: scaleX(1)"
+      style="transform: scaleX(-1) scaleY(-1)"
     ></video>
     <canvas
       id="overlay"
-      style="position: absolute; top: 0; left: 0; transform: scaleX(1)"
+      style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: scaleX(-1) scaleY(-1);
+      "
     ></canvas>
   </div>
+
+  <div class="space"></div>
+
+  <button id="startExport" class="large">
+    <span class="export-text">Exporter la vidéo</span>
+    <span class="download-text" style="display: none"
+      >Télécharger la vidéo</span
+    >
+  </button>
+
+  <div class="space"></div>
+
+  <canvas id="exportCanvas" style="display: none"></canvas>
+  <video id="outputVideo" controls style="max-width: 100%"></video>
 </div>
 
 <% contentFor('scripts') %>
@@ -76,23 +95,42 @@
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         if (detections && detections.length > 0) {
-          console.log(`Détecté ${detections.length} visages`);
-
           // Utiliser la méthode composite pour "effacer" les bulles
           ctx.globalCompositeOperation = "destination-out";
 
           detections.forEach((detection) => {
-            const { x, y, width, height } = detection.detection.box;
+            const landmarks = detection.landmarks;
+            const leftEye = landmarks.getLeftEye();
+            const rightEye = landmarks.getRightEye();
+            const jawline = landmarks.getJawOutline();
+            const nose = landmarks.getNose();
+
+            // Calculer le centre du visage plus précisément
+            const eyesCenterX = (leftEye[0].x + rightEye[3].x) / 2;
+            const eyesCenterY = (leftEye[0].y + rightEye[3].y) / 2;
+
+            // Calculer la taille optimale de la bulle
+            const eyesDistance = Math.hypot(
+              rightEye[3].x - leftEye[0].x,
+              rightEye[3].y - leftEye[0].y
+            );
+
+            // Calculer la distance verticale entre les yeux et le menton
+            const chinY = Math.max(...jawline.map((point) => point.y));
+            const foreheadY = Math.min(
+              ...landmarks.getLeftEyeBrow().map((point) => point.y)
+            );
+            const faceHeight = chinY - foreheadY;
+
+            // Réduire la taille de la bulle
+            const bubbleSize = Math.max(eyesDistance * 1.5, faceHeight * 0.9);
+
+            // Ajuster le centre de la bulle plus haut
+            const bubbleCenterY = eyesCenterY + faceHeight * 0.1;
 
             // Dessiner une bulle transparente
             ctx.beginPath();
-            ctx.arc(
-              x + width / 2,
-              y + height / 2,
-              Math.max(width, height) / 1.5,
-              0,
-              2 * Math.PI
-            );
+            ctx.arc(eyesCenterX, bubbleCenterY, bubbleSize, 0, 2 * Math.PI);
             ctx.fill();
           });
 
@@ -101,16 +139,37 @@
 
           // Dessiner les contours des bulles
           detections.forEach((detection) => {
-            const { x, y, width, height } = detection.detection.box;
+            const landmarks = detection.landmarks;
+            const leftEye = landmarks.getLeftEye();
+            const rightEye = landmarks.getRightEye();
+            const jawline = landmarks.getJawOutline();
+            const nose = landmarks.getNose();
+
+            // Calculer le centre du visage plus précisément
+            const eyesCenterX = (leftEye[0].x + rightEye[3].x) / 2;
+            const eyesCenterY = (leftEye[0].y + rightEye[3].y) / 2;
+
+            // Calculer la taille optimale de la bulle
+            const eyesDistance = Math.hypot(
+              rightEye[3].x - leftEye[0].x,
+              rightEye[3].y - leftEye[0].y
+            );
+
+            // Calculer la distance verticale entre les yeux et le menton
+            const chinY = Math.max(...jawline.map((point) => point.y));
+            const foreheadY = Math.min(
+              ...landmarks.getLeftEyeBrow().map((point) => point.y)
+            );
+            const faceHeight = chinY - foreheadY;
+
+            // Réduire la taille de la bulle
+            const bubbleSize = Math.max(eyesDistance * 1.5, faceHeight * 0.9);
+
+            // Ajuster le centre de la bulle plus haut
+            const bubbleCenterY = eyesCenterY + faceHeight * 0.1;
 
             ctx.beginPath();
-            ctx.arc(
-              x + width / 2,
-              y + height / 2,
-              Math.max(width, height) / 1.5,
-              0,
-              2 * Math.PI
-            );
+            ctx.arc(eyesCenterX, bubbleCenterY, bubbleSize, 0, 2 * Math.PI);
             ctx.strokeStyle = "#44d8f1";
             ctx.lineWidth = 3;
             ctx.stroke();
@@ -136,5 +195,155 @@
         video.src = URL.createObjectURL(file);
         video.style.display = "block";
       });
+
+    const exportCanvas = document.getElementById("exportCanvas");
+    const exportCtx = exportCanvas.getContext("2d");
+    const outputVideo = document.getElementById("outputVideo");
+    let mediaRecorder;
+    let recordedChunks = [];
+
+    document
+      .getElementById("startExport")
+      .addEventListener("click", async () => {
+        const button = document.getElementById("startExport");
+        const exportText = button.querySelector(".export-text");
+        const downloadText = button.querySelector(".download-text");
+
+        if (button.hasAttribute("data-blob-url")) {
+          // Si on a déjà un export, télécharger
+          const a = document.createElement("a");
+          a.href = button.getAttribute("data-blob-url");
+          a.download = "video-bulle.webm";
+          a.click();
+          return;
+        }
+
+        // Sinon, faire l'export
+        exportText.style.display = "none";
+        button.disabled = true;
+        button.textContent = "Export en cours...";
+
+        const outputSize = 720;
+        exportCanvas.width = outputSize;
+        exportCanvas.height = outputSize;
+        recordedChunks = [];
+
+        const stream = exportCanvas.captureStream(30);
+        mediaRecorder = new MediaRecorder(stream, {
+          mimeType: "video/webm;codecs=vp9",
+          videoBitsPerSecond: 5000000,
+        });
+
+        mediaRecorder.ondataavailable = (e) => {
+          if (e.data.size > 0) {
+            recordedChunks.push(e.data);
+          }
+        };
+
+        mediaRecorder.onstop = () => {
+          const blob = new Blob(recordedChunks, { type: "video/webm" });
+          const blobUrl = URL.createObjectURL(blob);
+          outputVideo.src = blobUrl;
+
+          // Mettre à jour le bouton
+          button.disabled = false;
+          exportText.style.display = "none";
+          downloadText.style.display = "inline";
+          button.setAttribute("data-blob-url", blobUrl);
+        };
+
+        mediaRecorder.start();
+        video.currentTime = 0;
+        video.play();
+        exportFrame();
+      });
+
+    async function exportFrame() {
+      if (video.paused || video.ended) {
+        mediaRecorder.stop();
+        return;
+      }
+
+      try {
+        const detections = await faceapi
+          .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
+          .withFaceLandmarks();
+
+        exportCtx.fillStyle = "black";
+        exportCtx.fillRect(0, 0, exportCanvas.width, exportCanvas.height);
+
+        if (detections && detections.length > 0) {
+          // Traiter chaque visage détecté
+          detections.forEach((detection) => {
+            const landmarks = detection.landmarks;
+            const leftEye = landmarks.getLeftEye();
+            const rightEye = landmarks.getRightEye();
+            const jawline = landmarks.getJawOutline();
+            const nose = landmarks.getNose();
+
+            // Calculer le centre du visage plus précisément
+            const eyesCenterX = (leftEye[0].x + rightEye[3].x) / 2;
+            const eyesCenterY = (leftEye[0].y + rightEye[3].y) / 2;
+
+            // Calculer la taille optimale de la bulle
+            const eyesDistance = Math.hypot(
+              rightEye[3].x - leftEye[0].x,
+              rightEye[3].y - leftEye[0].y
+            );
+
+            // Calculer la distance verticale entre les yeux et le menton
+            const chinY = Math.max(...jawline.map((point) => point.y));
+            const foreheadY = Math.min(
+              ...landmarks.getLeftEyeBrow().map((point) => point.y)
+            );
+            const faceHeight = chinY - foreheadY;
+
+            // Réduire la taille de la bulle
+            const bubbleSize = Math.max(eyesDistance * 1.2, faceHeight * 0.8);
+
+            // Ajuster le centre de la bulle plus haut
+            const bubbleCenterY = eyesCenterY - faceHeight * 0.1;
+
+            // Calculer l'échelle pour centrer la bulle
+            const scale = (exportCanvas.width * 0.8) / (bubbleSize * 2);
+
+            // Dessiner la vidéo source avec le masque
+            exportCtx.save();
+            exportCtx.translate(
+              exportCanvas.width / 2,
+              exportCanvas.height / 2
+            );
+            exportCtx.scale(scale, scale);
+            exportCtx.translate(-eyesCenterX, -bubbleCenterY);
+
+            // Créer le masque circulaire
+            exportCtx.beginPath();
+            exportCtx.arc(
+              eyesCenterX,
+              bubbleCenterY,
+              bubbleSize,
+              0,
+              2 * Math.PI
+            );
+            exportCtx.clip();
+
+            // Dessiner la vidéo
+            exportCtx.drawImage(video, 0, 0);
+
+            // Dessiner le contour de la bulle
+            exportCtx.strokeStyle = "#44d8f1";
+            exportCtx.lineWidth = 3 / scale;
+            exportCtx.stroke();
+
+            exportCtx.restore();
+          });
+        }
+
+        requestAnimationFrame(exportFrame);
+      } catch (err) {
+        console.error("Erreur export:", err);
+        mediaRecorder.stop();
+      }
+    }
   });
 </script>
